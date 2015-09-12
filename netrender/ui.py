@@ -188,7 +188,6 @@ class RENDER_PT_network_slave_settings(NetRenderButtonsPanel, bpy.types.Panel):
         col = split.column()
         col.enabled = netsettings.slave_override_cycles_compute_device_enabled == True
         
-        #col.prop(netsettings, "slave_override_cycles_compute_device_type", text="")
         col.prop(context.scene.cycles, "device", text="")
 
         col = split.column(align=True)
@@ -499,32 +498,10 @@ class NetRenderSettings(bpy.types.PropertyGroup):
                         description="Use different render device on slave for jobs",
                         default = False)
 
-
         NetRenderSettings.slave_override_cycles_tiles_enabled = BoolProperty(
                         name="Tiles",
                         description="Use different tiling on slave for jobs",
                         default = False)
-
-        NetRenderSettings.slave_override_cycles_compute_device_type = EnumProperty(
-                                items=(
-                                                ('SLAVE_OVERRIDE_CYCLES_COMPUTE_GPU', "GPU", "Use GPU"),
-                                                ('SLAVE_OVERRIDE_CYCLES_COMPUTE_CPU', "CPU", "Use CPU"),
-                                            ),
-                                name="Device",
-                                description="Compute device for slave to work on",
-                                default="SLAVE_OVERRIDE_CYCLES_COMPUTE_GPU")
-
-        NetRenderSettings.slave_override_cycles_tiles_tile_order = EnumProperty(
-                                items=(
-                                                ('CENTER', "Center", "Render from center to the edges"),
-                                                ('RIGHT_TO_LEFT', "Right to Left", "Render from right to left"),
-                                                ('LEFT_TO_RIGHT', "Left to Right", "Render from left to right"),
-                                                ('TOP_TO_BOTTOM', "Top to Bottom", "Render from top to bottom"),
-                                                ('BOTTOM_TO_TOP', "Bottom to Top", "Render from bottom to top"),
-                                            ),
-                                name="Tile Order",
-                                description="Tile order for rendering",
-                                default="CENTER")
 
         NetRenderSettings.use_master_clear = BoolProperty(
                         name="Clear on exit",
