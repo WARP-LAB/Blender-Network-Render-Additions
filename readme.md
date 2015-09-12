@@ -21,7 +21,7 @@ Fork of this addon is pulled out from addon state in Blender 2.75a stable
 
 ![Slave panel](https://raw.githubusercontent.com/WARP-LAB/Blender-Network-Render-Additions/master/readme/screen-01.png)
 
-It is Slave who should define the preferred rendering device - GPU or CPU - on it as each Slave has different hardware capabilities (GPU/CPU).
+It is Slave who should define the preferred rendering device as each Slave has different hardware capabilities (GPU/CPU).
 This makes rendering effective in terms of speed, but does not affect rendering result in terms of image (scene can be rendered mixing GPU and CPU capable Slaves).
 
 Slave can (should) override
@@ -71,7 +71,9 @@ Replace directory `netrender` in your Blender `addons` directory with `netrender
 
 ## License
 
-####Original author Martin Poirier
+Original author Martin Poirier
+
+Contrubutions by kroko / Reinis Adovics (WARP)
 
 
 ```
