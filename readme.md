@@ -43,9 +43,9 @@ The tile size override is present, as tile sizes should correspond to compute de
 
 ###Master - Slave timeout
 
-Master can specify timeout (in minutes) after which master considers Slave dead if a frame from slave hasn't been received. N.B., this is for frame, not for the whole animation time.
+Master can specify timeout (in minutes) after which master considers Slave dead if a frame from Slave hasn't been received. N.B., this is timeout for frame, not for the whole animation time.
 
-*Previously this was hardcoded and Master considered any Slave executing job (frame on Slave) more than 5 minutes as dead, cancelled the job, resulting in socket timeout on Slive and finally crashing exception. Thus it was not possible to create über high quality final renderings not to mention "render me one image for the the whole weekend" tasks.*
+*Previously this was hardcoded and Master considered any Slave executing job (frame on Slave) more than 5 minutes as dead, cancelled the job, resulting in socket timeout on Slave and finally crashing exception. Thus it was not possible to create über high quality final renderings not to mention "render me one image for the the whole weekend" tasks.*
 
 ---
 
