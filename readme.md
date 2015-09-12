@@ -17,9 +17,10 @@ Fork of this addon is pulled out from addon state in Blender 2.75a stable
 
 ## Fork additions
 
+![Slave panel](https://raw.githubusercontent.com/WARP-LAB/Blender-Network-Render-Additions/master/readme/screen-01.jpg)
+
 ###Slave overrides - Compute device and Tiles size
 
-![Slave panel](https://raw.githubusercontent.com/WARP-LAB/Blender-Network-Render-Additions/master/readme/screen-01.png)
 
 It is Slave who should define the preferred rendering device as each Slave has different hardware capabilities (GPU/CPU).
 This makes rendering effective in terms of speed, but does not affect rendering result in terms of image (scene can be rendered mixing GPU and CPU capable Slaves).
@@ -39,6 +40,12 @@ Slave can (should) override
 The tile size override is present, as tile sizes should correspond to compute device type. Basically, always when Slave overrides compute device (thus renderer is Cycles) also size for tiles should be overridden. Rule of thumb - GPU 256x256, CPU 16x16. Read more [here](http://adaptivesamples.com/2013/11/05/auto-tile-size-addon-updated-again/) and [any other article](https://www.google.com/search?rls=en&q=speeding+up+blender+cycles&ie=UTF-8&oe=UTF-8) that discusses speeding up cycles.
 
 *Before this addition Slave rendered the file with settings as they are set on Client. Client that doesn't have GPU capabilities can't specify that Slaves should render on GPU as there is no device dropdown (i.e., jobs sent from Mac with ATI card rendered on GPU-ready Slaves using CPU). And then there is issue with Client that had GPU capabilities (and file is set accordingly) working together with Slave that has only CPU support. Corresponding ticket <https://developer.blender.org/T46071>*
+
+###Master - Slave timeout
+
+Master can specify timeout (in minutes) after which master considers Slave dead if a frame from slave hasn't been received. N.B., this is for frame, not for the whole animation time.
+
+*Previously this was hardcoded and Master considered any Slave executing job (frame on Slave) more than 5 minutes as dead, cancelled the job, resulting in socket timeout on Slive and finally crashing exception. Thus it was not possible to create über high quality final renderings not to mention "render me one image for the the whole weekend" tasks.*
 
 ---
 

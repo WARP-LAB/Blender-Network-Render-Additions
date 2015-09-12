@@ -966,7 +966,7 @@ class RenderHandler(http.server.BaseHTTPRequestHandler):
                 self.send_head(http.client.NO_CONTENT)
 
 class RenderMasterServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
-    def __init__(self, address, handler_class, path, force=False, subdir=True):
+    def __init__(self, address, handler_class, path, master_force_frame_timeout, force=False, subdir=True):
         self.jobs = []
         self.jobs_map = {}
         self.slaves = []
@@ -981,7 +981,8 @@ class RenderMasterServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
 
         verifyCreateDir(self.path)
 
-        self.slave_timeout = 5 # 5 mins: need a parameter for that
+        self.slave_timeout = int(master_force_frame_timeout)
+        print("master to slave timeout for one frame rendering set to " + str(self.slave_timeout))
 
         self.balancer = netrender.balancing.Balancer()
         self.balancer.addRule(netrender.balancing.RatingUsageByCategory(self.getJobs))
@@ -1131,7 +1132,7 @@ class RenderMasterServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
 def clearMaster(path):
     shutil.rmtree(path)
 
-def createMaster(address, clear, force, path):
+def createMaster(address, clear, force, path, master_force_frame_timeout):
     filepath = os.path.join(path, "blender_master.data")
 
     if not clear and os.path.exists(filepath):
@@ -1139,12 +1140,12 @@ def createMaster(address, clear, force, path):
         with open(filepath, 'rb') as f:
             path, jobs, slaves = pickle.load(f)
             
-            httpd = RenderMasterServer(address, RenderHandler, path, force=force, subdir=False)
+            httpd = RenderMasterServer(address, RenderHandler, path, master_force_frame_timeout, force=force, subdir=False)
             httpd.restore(jobs, slaves)
             
             return httpd
 
-    return RenderMasterServer(address, RenderHandler, path, force=force)
+    return RenderMasterServer(address, RenderHandler, path, master_force_frame_timeout, force=force)
 
 def saveMaster(path, httpd):
     filepath = os.path.join(path, "blender_master.data")
@@ -1152,8 +1153,8 @@ def saveMaster(path, httpd):
     with open(filepath, 'wb') as f:
         pickle.dump((httpd.path, httpd.jobs, httpd.slaves), f, pickle.HIGHEST_PROTOCOL)
 
-def runMaster(address, broadcast, clear, force, path, update_stats, test_break,use_ssl=False,cert_path="",key_path=""):
-    httpd = createMaster(address, clear, force, path)
+def runMaster(address, broadcast, clear, force, path, update_stats, test_break,use_ssl=False,cert_path="",key_path="",master_force_frame_timeout=15):
+    httpd = createMaster(address, clear, force, path, master_force_frame_timeout)
     httpd.timeout = 1
     httpd.stats = update_stats
     if use_ssl:

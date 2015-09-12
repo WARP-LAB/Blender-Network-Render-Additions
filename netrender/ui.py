@@ -222,6 +222,8 @@ class RENDER_PT_network_master_settings(NetRenderButtonsPanel, bpy.types.Panel):
         layout.prop(netsettings, "use_master_broadcast")
         layout.prop(netsettings, "use_master_force_upload")
         layout.prop(netsettings, "use_master_clear")
+        layout.label(text="Max timeout for waiting a frame from slave")
+        layout.prop(netsettings, "master_force_frame_timeout", text="Minutes")
 
 class RENDER_PT_network_job(NetRenderButtonsPanel, bpy.types.Panel):
     bl_label = "Job Settings"
@@ -512,6 +514,13 @@ class NetRenderSettings(bpy.types.PropertyGroup):
                         name="Force Dependency Upload",
                         description="Force client to upload dependency files to master",
                         default = False)
+
+        NetRenderSettings.master_force_frame_timeout = IntProperty(
+                        name="Timeout for waiting a frame from slave (minutes)",
+                        description="Timeout (in minutes) after which master considers slave dead if a frame from slave hasn't been received",
+                        default = 15,
+                        min=5,
+                        max=43200)
         
         default_path = os.environ.get("TEMP")
         

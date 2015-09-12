@@ -380,7 +380,8 @@ class NetworkRenderEngine(bpy.types.RenderEngine):
                          test_break = self.test_break,
                          use_ssl=netsettings.use_ssl,
                          cert_path=netsettings.cert_path,
-                         key_path=netsettings.key_path)
+                         key_path=netsettings.key_path,
+                         master_force_frame_timeout=netsettings.master_force_frame_timeout)
 
 
     def render_slave(self, scene):
