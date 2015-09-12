@@ -221,7 +221,20 @@ def render_slave(engine, netsettings, threads):
 
                     for frame in job.frames:
                         print("frame", frame.number)
-                        frame_args += ["-f", str(frame.number)]
+                        frame_args.append(str(frame.number))
+
+                    # arguments to the script are passed in specific order
+                    # [0] threads (imitates -t behaviour)
+                    # [1] directory to save frame(s) in (imitates -o behaviour)
+                    # [2] renderer (imitates -E behaviour)
+                    # [3] type (imitates -F behaviour)
+                    # [4] Override render device CPU/GPU
+                    # [5] Render device CPU/GPU
+                    # [6] Override tiles
+                    # [7] Tile order
+                    # [8] Tile size X
+                    # [9] Tile size Y
+                    # [10] frame numbers to render (imitates -f behaviour)
 
                     with NoErrorDialogContext():
                         process = subprocess.Popen(
@@ -230,10 +243,18 @@ def render_slave(engine, netsettings, threads):
                              "-y",
                              "-noaudio",
                              job_full_path,
-                             "-t", str(threads),
-                             "-o", os.path.join(job_prefix, "######"),
-                             "-E", job.render,
-                             "-F", "MULTILAYER",
+                             "-P", os.path.join(os.path.dirname(os.path.realpath(__file__)), "slave_render.py"),
+                             "--",
+                             str(threads),
+                             os.path.join(job_prefix, ""),
+                             job.render,
+                             "OPEN_EXR_MULTILAYER",
+                             str(int(netsettings.slave_override_cycles_compute_device_enabled)),
+                             str(bpy.context.scene.cycles.device),
+                             str(int(netsettings.slave_override_cycles_tiles_enabled)),
+                             str(bpy.context.scene.cycles.tile_order),
+                             str(bpy.context.scene.render.tile_x),
+                             str(bpy.context.scene.render.tile_y),
                              ] + frame_args,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT,
