@@ -1,0 +1,138 @@
+# standard gitignore for WARP projects
+
+# For C/C++/ObjC++ projects
+# Added all OS
+# plus Cinder and oF
+# v.0.0.2
+
+###########################
+# XCode
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+*.user
+
+# XCode 4
+xcuserdata/
+*.xcworkspace
+*.xccheckout
+
+###########################
+# Code::Blocks
+*.depend
+*.layout
+
+###########################
+# Visual Studio
+*.sdf
+*.opensdf
+*.suo
+*.pdb
+*.ilk
+*.aps
+*.ncb
+ipch/
+
+###########################
+# Eclipse
+.metadata
+local.properties
+.externalToolBuilders
+
+###########################
+# NetBeans
+build
+nbproject/
+
+###########################
+# Sublime 2
+*.sublime-project
+*.sublime-workspace
+
+###########################
+# OS OSX, junk
+.DS_Store
+*.swp
+*~.nib
+*.out
+._*
+
+###########################
+# OS NIX junk
+*~
+
+# KDE
+.directory
+.AppleDouble
+
+###########################
+# OS MSW junk
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+
+# Android
+.csettings
+
+###########################
+# BUILD PRODUCTS
+
+# build dir for Cinder and oF
+#build/
+[Bb]uild/
+
+#obj/
+[Oo]bj/
+
+Debug*/
+Release*/
+
+# products
+*.o
+*.mode*
+*.dSYM
+*.app/
+*.pyc
+*.service/
+
+# snvs
+.svn/
+
+# logs
+*.log
+
+# misc
+*.cpp.eep
+*.cpp.elf
+*.cpp.hex
+
+# archives
+*.zip
+*.tar.gz
+*.tar
+
+# pkg
+*.pkg
+Deploy/
+
+###########################
+# allow? flat files for this project i.e. icns
+# change as needed
+
+# network renderer contains readme with images, so we keep those
+
+#*.png
+#*.jpeg
+#*.jpg
+#*.tiff
+#*.tif
+#*.ico
+#*.mov
+#*.mp4
+#*.m4v
+
