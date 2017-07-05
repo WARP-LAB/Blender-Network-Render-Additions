@@ -19,7 +19,7 @@ Fork of this addon is pulled out from addon state in Blender 2.75a stable
 
 ![Slave panel](https://raw.githubusercontent.com/WARP-LAB/Blender-Network-Render-Additions/master/readme/screen-01.jpg)
 
-###Slave overrides - Compute device and Tiles size
+### Slave overrides - Compute device and Tiles size
 
 
 It is Slave who should define the preferred rendering device as each Slave has different hardware capabilities (GPU/CPU).
@@ -41,7 +41,7 @@ The tile size override is present, as tile sizes should correspond to compute de
 
 *Before this addition Slave rendered the file with settings as they are set on Client. Client that doesn't have GPU capabilities can't specify that Slaves should render on GPU as there is no device dropdown (i.e., jobs sent from Mac with ATI card rendered on GPU-ready Slaves using CPU). And then there is issue with Client that had GPU capabilities (and file is set accordingly) working together with Slave that has only CPU support. Corresponding ticket <https://developer.blender.org/T46071>*
 
-###Master - Slave timeout
+### Master - Slave timeout
 
 Master can specify timeout (in minutes) after which master considers Slave dead if a frame from Slave hasn't been received. N.B., this is timeout for frame, not for the whole animation time.
 
@@ -54,23 +54,23 @@ Master can specify timeout (in minutes) after which master considers Slave dead 
 Replace directory `netrender` in your Blender `addons` directory with `netrender` directory found in this repo. Restart Blender.
 
 
-#####GNU/Linux
+##### GNU/Linux  
 `<Blender Installation Directory>/2.75/scripts/addons`
 
-#####OSX
+##### OSX  
 `<Blender Installation Directory>/Blender.app/Contents/Resources/2.75/scripts/addons`
 
-#####MSW
+##### MSW  
 `<Blender Installation Directory>\2.75\scripts\addons`
 
 ---
 
 ## Status
 
-##### Done
+##### Done  
 * Rendering (stills and animation) implemented and tested (*Render on slave*) on all OSes.
 
-##### Todo
+##### Todo  
 * Overrides for baking shouldn't work as no line of code is written for it yet.
 * Overrides for thumbnail generation shouldn't work as no line of code is written for it yet.
 
