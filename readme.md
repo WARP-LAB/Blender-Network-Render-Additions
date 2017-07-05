@@ -9,7 +9,7 @@ The intention of this fork is to add functionality to Blender Network Render.
 
 *The intention is not to replace renderfarms with jobs systems and such, rather it is designed to interactively render a single image over a network with immediate feedback in Blender. This requires a quite different design than render farms, although in certain simple cases it could serve as a replacement.*
 
-Network Renderer (packed together with stable releases) by Martin Poirier <http://wiki.blender.org/index.php/Dev:2.6/Source/Render/Cycles/Network_Render>
+Network Renderer (packed together with stable releases) by Martin Poirier <https://wiki.blender.org/index.php/Dev:Source/Render/Cycles/Network_Render>
 
 Fork of this addon is pulled out from addon state in Blender 2.75a stable
 
@@ -55,13 +55,13 @@ Replace directory `netrender` in your Blender `addons` directory with `netrender
 
 
 ##### GNU/Linux  
-`<Blender Installation Directory>/2.75/scripts/addons`
+`<Blender Installation Directory>/<Blender version number>/scripts/addons`
 
 ##### OSX  
-`<Blender Installation Directory>/Blender.app/Contents/Resources/2.75/scripts/addons`
+`<Blender Installation Directory>/Blender.app/Contents/Resources/<Blender version number>/scripts/addons`
 
 ##### MSW  
-`<Blender Installation Directory>\2.75\scripts\addons`
+`<Blender Installation Directory>\<Blender version number>\scripts\addons`
 
 ---
 
