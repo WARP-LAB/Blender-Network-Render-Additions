@@ -353,6 +353,7 @@ class NetworkRenderEngine(bpy.types.RenderEngine):
     bl_label = "Network Render"
     bl_use_postprocess = False
     def render(self, scene):
+        self.bl_use_postprocess = scene.network_render.post_process
         try:
             if scene.network_render.mode == "RENDER_CLIENT":
                 self.render_client(scene)
