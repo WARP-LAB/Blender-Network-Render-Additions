@@ -47,6 +47,12 @@ Master can specify timeout (in minutes) after which master considers Slave dead 
 
 *Previously this was hardcoded and Master considered any Slave executing job (frame on Slave) more than 5 minutes as dead, cancelled the job, resulting in socket timeout on Slave and finally crashing exception. Thus it was not possible to create über high quality final renderings not to mention "render me one image for the the whole weekend" tasks.*
 
+### Client - Retrieve with post-processing
+
+The client can choose to retrieve composited results with post-processing included.
+
+*Previously, post processing was completed and saved to the .exr, but by default frames retrieved by the client did not include the post-processing and there was no option to do this.*
+
 ---
 
 ## Install

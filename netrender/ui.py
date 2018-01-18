@@ -266,6 +266,7 @@ class RENDER_PT_network_job(NetRenderButtonsPanel, bpy.types.Panel):
         
         if netsettings.job_type == "JOB_BLENDER":
             layout.prop(netsettings, "save_before_job")
+            layout.prop(netsettings, "post_process")
             
         
 
@@ -587,6 +588,11 @@ class NetRenderSettings(bpy.types.PropertyGroup):
                         name="Save Before Job",
                         description="Save current file before sending a job",
                         default = False)
+
+        NetRenderSettings.post_process = BoolProperty(
+                        name="Retrieve with post-processing",
+                        description="Retrieve rendered frames with post-processing included",
+                        default = True)
 
         NetRenderSettings.chunks = IntProperty(
                         name="Chunks",
