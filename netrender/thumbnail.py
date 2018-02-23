@@ -64,7 +64,7 @@ def _internal(filename):
             img = bpy.data.images[imagename]
             bpy.data.images.remove(img)
 
-        bpy.ops.image.open(filepath=filename)
+        bpy.data.images.load(filepath=filename)
         img = bpy.data.images[imagename]
             
         img.save_render(thumbname, scene=scene)
